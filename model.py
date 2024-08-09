@@ -17,8 +17,8 @@ class Model(torch.nn.Module):
         return x
 
 with torch.no_grad():
-    # device = "cuda" if torch.cuda.is_available() else "cpu"
-    device = "cpu"
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    # device = "cpu"
     model = Model().to(device=device)
     example_inputs=(torch.randn(8, 10, device=device),)
     batch_dim = torch.export.Dim("batch", min=1, max=1024)
