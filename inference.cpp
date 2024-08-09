@@ -12,16 +12,14 @@ int main(int argc, char *argv[]) {
     c10::InferenceMode mode;
     torch::inductor::AOTIModelContainerRunnerCuda *runner;
     runner = new torch::inductor::AOTIModelContainerRunnerCuda(model_path, 1);
-    std::vector<torch::Tensor> inputs = {torch::randn({8, 10}, at::kCUDA)};
+    std::vector<torch::Tensor> inputs = {
+        torch::randn({64,3}, at::kCUDA),
+        torch::randn({2,64}, at::kCUDA),
+        torch::randn({264,3}, at::kCUDA),
+        torch::randn({3,3}, at::kCUDA),
+        torch::randn({64,1}, at::kCUDA)};
     std::vector<torch::Tensor> outputs = runner->run(inputs);
     std::cout << "Result from the first inference:"<< std::endl;
     std::cout << outputs[0] << std::endl;
-
-    // The second inference uses a different batch size and it works because we
-    // specified that dimension as dynamic when compiling model.so.
-    std::cout << "Result from the second inference:"<< std::endl;
-    std::vector<torch::Tensor> inputs2 = {torch::randn({2, 10}, at::kCUDA)};
-    std::cout << runner->run(inputs2)[0] << std::endl;
-
     return 0;
 }
