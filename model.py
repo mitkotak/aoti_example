@@ -28,7 +28,7 @@ class DummyModel(torch.nn.Module):
 
 with torch.no_grad():
     device = "cuda" if torch.cuda.is_available() else "cpu"
-    # device = "cpu"
+    # device = "cuda"
     # inputs:
         #   pos (64,3)
         #   edge_index (2,264)
