@@ -2,7 +2,7 @@
 all: build
 
 # Build target
-build:
+build: clean
 	cmake -Bbuild -DCMAKE_PREFIX_PATH=`python3 -c 'import torch;print(torch.utils.cmake_prefix_path)'`
 	cmake --build build
 
