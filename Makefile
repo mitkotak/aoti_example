@@ -7,8 +7,8 @@ build:
 	cmake --build build
 
 # Run target
-run: build
-	./build/inference ${PWD}/si-deployed.so
+run:
+	./build/inference /home/mkotak/atomic_architects/lib/allegro/export/si-deployed.so
 
 # Clean target
 clean:
