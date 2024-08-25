@@ -4,13 +4,13 @@ LIBTORCH_PATH ?= /home/mkotak/atomic_architects/lib/libtorch
 all: build
 
 # Build target
-build:
+build: clean
 	cmake -Bbuild -DCMAKE_PREFIX_PATH=$(LIBTORCH_PATH)
 	cmake --build build
 
 # Run target
-run: build
-	./build/inference /home/mkotak/atomic_architects/allegro/export/si-deployed.so
+run:
+	./build/inference /home/mkotak/atomic_architects/lib/allegro/export/si-deployed.so
 
 # Clean target
 clean:
